@@ -20,7 +20,7 @@
 		<h3>Status of Web Services</h3>
 	</div>
 	<div class="row">
-		<p class="lead"><i id="portal-status-icon" class="fa fa-circle fa-2x"></i>&nbsp; NUMUN Portal</p>
+		<p class="lead"><i id="portal-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; NUMUN Portal</p>
 		
 	</div>
 </div>
@@ -32,7 +32,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 //get NUMUN Portal Status
-	$.ajax('https://portal.numun.org/', { dataType: 'jsonp' }).complete(function(e){
+	$.ajax('https://portal.numun.org/pages/jsonp.php', { dataType: 'jsonp' }).complete(function(e){
 	if(e.statusCode == 200){
 		//success, page is available
 		//console.log('Portal works.');
