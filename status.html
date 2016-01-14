@@ -78,8 +78,8 @@ $(document).ready(function(){
 		$('#slack-status-icon').addClass('text-danger');
 	});
 //Get Mandrill API status
-	$.ajax('https://mandrillapp.com/api/1.0/test').complete(function(e){
-	console.log(e.status);
+	$.ajax('https://mandrillapp.com/api/1.0/test').complete(function(e, f){
+	console.log(e + '/' + f);
 	if(e.status == 'error' && e.name == 'UserError'){
 		//"success" API is available
 		$('#mandrill-status-icon').addClass('text-success');
