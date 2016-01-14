@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>NUMUN XIII - April 14-17, 2016</title>
+<title>Status of Web Services | NUMUN</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300|Lato:700,300' rel='stylesheet' type='text/css'>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,24 +32,16 @@
 <script type="text/javascript">
 $(document).ready(function(){
 //get NUMUN Portal Status
-	$.ajax('https://portal.numun.org/pages/jsonp.php', { dataType: 'jsonp' }).complete(function(e){
-	if(e.statusCode == 200){
+	$.ajax('https://portal.numun.org/pages/jsonp.php', { dataType: 'jsonp' }).done(function(e){
+	if(e.status == 'success'){
 		//success, page is available
 		//console.log('Portal works.');
 		$('#portal-status-icon').addClass('text-success');
-	}else if(e.statusCode == 404){
-		//not reachable/not found
-		//console.log('Portal broke.');
+	}
+	})
+	.fail(function(){
 		$('#portal-status-icon').addClass('text-danger');
-    }else if(e.statusCode == 500){
-    	//server error
-		//console.log('Portal broke.');
-		$('#portal-status-icon').addClass('text-warning');
-    }else{
-	    //console.log('Portal broke.');
-	    $('#portal-status-icon').addClass('text-warning');
-    }
-});
+	});
 });
 	
 </script>
