@@ -82,11 +82,11 @@ $(document).ready(function(){
 		$('#mandrill-status-icon').addClass('text-success');
 	})
 	.error(function(e){
-		console.log(e.name);
-	if(e.name == 'UserError'){
-		//"success" API is available
+	if(e.status == 500){
+		//"success" API is available - we haven't supplied a proper arg.
 		$('#mandrill-status-icon').addClass('text-success');
 	}else{
+		//API throws non-server error
 		$('#mandrill-status-icon').addClass('text-warning');
 	}
 	});
