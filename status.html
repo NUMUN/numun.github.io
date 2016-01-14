@@ -67,10 +67,9 @@ $(document).ready(function(){
 	});
 //Get Slack API status
 	$.ajax('https://slack.com/api/api.test').done(function(e){
-	var response = $.parseJSON(e);
-	if(response.ok == 'true'){
+	console.log(e.ok);
+	if(e.ok == 'true'){
 		//success, page is available
-		//console.log('Portal works.');
 		$('#slack-status-icon').addClass('text-success');
 	}else{
 		$('#slack-status-icon').addClass('text-warning');
