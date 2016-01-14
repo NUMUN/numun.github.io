@@ -22,8 +22,8 @@
 	<div class="row">
 		<div class="col-sm-6">
 		<p class="lead">Status of NUMUN Web Services</p>
-		<h3><i id="web-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; NUMUN Website</h3>
-		<h3><i id="portal-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; NUMUN Portal</h3>
+		<h3><i id="web-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; Public Website</h3>
+		<h3><i id="portal-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; Portals</h3>
 		</div>
 		
 		<div class="col-sm-6">
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	});
 //Get Mandrill API status
 	$.ajax('https://mandrillapp.com/api/1.0/test').complete(function(e, f){
-	console.log(e + '/' + f);
+	console.log(e.name);
 	if(e.name == 'UserError'){
 		//"success" API is available
 		$('#mandrill-status-icon').addClass('text-success');
