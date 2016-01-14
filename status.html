@@ -80,7 +80,7 @@ $(document).ready(function(){
 //Get Mandrill API status
 	$.ajax('https://mandrillapp.com/api/1.0/test').complete(function(e, f){
 	console.log(e + '/' + f);
-	if(e.status == 'error' && e.name == 'UserError'){
+	if(e.name == 'UserError'){
 		//"success" API is available
 		$('#mandrill-status-icon').addClass('text-success');
 	}else{
