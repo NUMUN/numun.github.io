@@ -29,7 +29,7 @@
 		<div class="col-sm-6">
 		<p class="lead">Status of Other Services</p>
 		<h3><i id="slack-status-icon" class="fa fa-circle fa-lg"></i>&nbsp;<i id="slack-status-icon" class="fa fa-slack"></i>&nbsp; Slack <small>Communications</small></h3>
-		<h3 class="text-muted"><i id="mandrill-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; Mandrill <small>Email Service</small></h3>
+		<h3><i id="mandrill-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; Mandrill <small>Email Service</small></h3>
 		
 		</div>
 	</div>
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	});
 //Get Mandrill API status
 	$.ajax('https://mandrillapp.com/api/1.0/test').complete(function(e){
-	//console.log(e.ok);
+	console.log(e.status);
 	if(e.status == 'error' && e.name == 'UserError'){
 		//"success" API is available
 		$('#mandrill-status-icon').addClass('text-success');
