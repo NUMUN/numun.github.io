@@ -28,7 +28,8 @@
 		</div>
 		
 		<div class="col-sm-6">
-		<p class="lead">Status of Other Services <small>NOT AVAILABLE</small></p>
+		<p class="lead">Status of Other Services</p>
+		<h3><i id="slack-status-icon" class="fa fa-circle fa-lg"></i>&nbsp;<i id="slack-status-icon" class="fa fa-slack"></i>&nbsp; Slack <small>Communications</small></h3>
 		<h3 class="text-muted"><i id="mandrill-status-icon" class="fa fa-question-circle fa-lg"></i>&nbsp; Mandrill <small>Email Service</small></h3>
 		
 		</div>
@@ -66,7 +67,8 @@ $(document).ready(function(){
 	});
 //Get Slack API status
 	$.ajax('https://slack.com/api/api.test').done(function(e){
-	if(e.ok == 'true'){
+	var response = $.parseJSON(e);
+	if(response.ok == 'true'){
 		//success, page is available
 		//console.log('Portal works.');
 		$('#slack-status-icon').addClass('text-success');
