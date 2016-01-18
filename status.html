@@ -104,7 +104,7 @@ $(document).ready(function(){
 	$.ajax({
 		type: "GET",
 		url: "http://alerts.weather.gov/cap/wwaatmget.php?x=ILC031&y=0",
-		dataType: "xml"
+		dataType: "jsonp"
 		}).done(function(result){
 		if($(result).find('cap:event').length() > 0){
 			if($(result).find('cap:status').text() == 'Actual'){
