@@ -106,6 +106,7 @@ $(document).ready(function(){
 		url: "https://portal.numun.org/pages/weather.php",
 		dataType: "jsonp"
 		}).done(function(result){
+		foreach(result){
 			if(result.status == 'Actual'){
 				$("#weather-alert").removeClass('hidden');
 				if(result.type == 'Alert' || result.type == 'Update'){
@@ -118,6 +119,7 @@ $(document).ready(function(){
 				$("#weather-alert-title").text(result.title);
 				$("#weather-alert-description").text(result.summary);
 			}
+		}
 	}).fail(function(){
 		
 	});
