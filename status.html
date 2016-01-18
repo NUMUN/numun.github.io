@@ -103,21 +103,21 @@ $(document).ready(function(){
 	//Get weather alerts for Cook County
 	$.ajax({
 		type: "GET",
-		url: "http://alerts.weather.gov/cap/wwaatmget.php?x=ILC031&y=0",
+		url: "https://portal.numun.org/pages/weather.php",
 		dataType: "jsonp"
 		}).done(function(result){
-		if($(result).find('cap:event').length() > 0){
-			if($(result).find('cap:status').text() == 'Actual'){
+		if($(result.xml).find('cap:event').length() > 0){
+			if($(result.xml).find('cap:status').text() == 'Actual'){
 				$("#weather-alert").removeClass('hidden');
-				if($(result).find('cap:msgType').text() == 'Alert' || $(result).find('cap:msgType').text() == 'Update'){
+				if($(result.xml).find('cap:msgType').text() == 'Alert' || $(result.xml).find('cap:msgType').text() == 'Update'){
 					$("#weather-alert").addClass('alert-danger');
 					$("#weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
-				}else if($(result).find('cap:msgType').text() == 'Cancel'){
+				}else if($(result.xml).find('cap:msgType').text() == 'Cancel'){
 					$("#weather-alert").addClass('alert-info');
 					$("#weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-title").text($(result).find('cap:event').text());
-				$("#weather-alert-description").text($(result).find('summary').text());
+				$("#weather-alert-title").text($(result.xml).find('cap:event').text());
+				$("#weather-alert-description").text($(result.xml).find('summary').text());
 			}
 		}
 	}).fail(function(){
