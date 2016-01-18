@@ -20,6 +20,15 @@
 		
 	</div>
 	<div class="row">
+		<div class="col-sm-12">
+			<div class="alert hidden" id="weather-alert">
+				<h3 id="weather-alert-heading"></h3>
+				<p class="lead" id="weather-alert-title"></p>
+				<p id="weather-alert-description"></p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-sm-6">
 		<p class="lead">Status of NUMUN Web Services</p>
 		<h3><i id="web-status-icon" class="fa fa-circle fa-lg"></i>&nbsp; Public Website</h3>
@@ -89,6 +98,30 @@ $(document).ready(function(){
 		//API throws non-server error
 		$('#mandrill-status-icon').addClass('text-warning');
 	}
+	});
+	
+	//Get weather alerts for Cook County
+	$.ajax({
+		type: "GET",
+		url: "http://alerts.weather.gov/cap/wwaatmget.php?x=ILC031&y=0",
+		dataType: "xml"
+		}).done(function(result){
+		if($(result).find('cap:event').length() > 0){
+			if($(result).find('cap:status').text() == 'Actual'){
+				$("#weather-alert").removeClass('hidden');
+				if($(result).find('cap:msgType').text() == 'Alert' || $(result).find('cap:msgType').text() == 'Update'){
+					$("#weather-alert").addClass('alert-danger');
+					$("#weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
+				}else if($(result).find('cap:msgType').text() == 'Cancel'){
+					$("#weather-alert").addClass('alert-info');
+					$("#weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
+				}
+				$("#weather-alert-title").text($(result).find('cap:event').text());
+				$("#weather-alert-description").text($(result).find('summary').text());
+			}
+		}
+	}).fail(function(){
+		
 	});
 	
 
