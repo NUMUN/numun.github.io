@@ -106,18 +106,18 @@ $(document).ready(function(){
 		url: "https://portal.numun.org/pages/weather.php",
 		dataType: "jsonp"
 		}).done(function(result){
-		if($(result.xml).find('cap:event').length() > 0){
-			if($(result.xml).find('cap:status').text() == 'Actual'){
+		if(result.length() > 0){
+			if(result.status == 'Actual'){
 				$("#weather-alert").removeClass('hidden');
-				if($(result.xml).find('cap:msgType').text() == 'Alert' || $(result.xml).find('cap:msgType').text() == 'Update'){
+				if(result.type == 'Alert' || result.type == 'Update'){
 					$("#weather-alert").addClass('alert-danger');
 					$("#weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
-				}else if($(result.xml).find('cap:msgType').text() == 'Cancel'){
+				}else if(result.type == 'Cancel'){
 					$("#weather-alert").addClass('alert-info');
 					$("#weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-title").text($(result.xml).find('cap:event').text());
-				$("#weather-alert-description").text($(result.xml).find('summary').text());
+				$("#weather-alert-title").text(result.title);
+				$("#weather-alert-description").text(result.summary);
 			}
 		}
 	}).fail(function(){
