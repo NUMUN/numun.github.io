@@ -106,18 +106,17 @@ $(document).ready(function(){
 		url: "https://portal.numun.org/pages/weather.php",
 		dataType: "jsonp"
 		}).done(function(result){
-		foreach(result){
-			if(result.status == 'Actual'){
+			if(result.[0].status == 'Actual'){
 				$("#weather-alert").removeClass('hidden');
-				if(result.type == 'Alert' || result.type == 'Update'){
+				if(result.[0].type == 'Alert' || result.[0].type == 'Update'){
 					$("#weather-alert").addClass('alert-danger');
 					$("#weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
-				}else if(result.type == 'Cancel'){
+				}else if(result.[0].type == 'Cancel'){
 					$("#weather-alert").addClass('alert-info');
 					$("#weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-title").text(result.title);
-				$("#weather-alert-description").text(result.summary);
+				$("#weather-alert-title").text(result.[0].title);
+				$("#weather-alert-description").text(result.[0].summary);
 			}
 		}
 	}).fail(function(){
