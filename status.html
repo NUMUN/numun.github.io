@@ -112,7 +112,7 @@ $(document).ready(function(){
 		dataType: "jsonp",
 		callback: "callback"
 		}).done(function(result){
-			$.parseJSON(result);
+			//$.parseJSON(result);
 			if(result[0].status == 'Actual'){
 				$("#weather-alert-1").removeClass('hidden');
 				if(result[0].type == 'Alert' || result[0].type == 'Update'){
