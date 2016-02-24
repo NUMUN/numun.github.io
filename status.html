@@ -104,7 +104,8 @@ $(document).ready(function(){
 	$.ajax({
 		type: "GET",
 		url: "https://portal.numun.org/pages/weather.php",
-		dataType: "jsonp"
+		dataType: "jsonp",
+		callback: "callback"
 		}).done(function(result){
 			if(result.status == 'Actual'){
 				$("#weather-alert").removeClass('hidden');
