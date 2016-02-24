@@ -21,10 +21,15 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="alert hidden" id="weather-alert">
-				<h3 id="weather-alert-heading"></h3>
+			<div class="alert hidden" id="weather-alert-1">
+				<h3 class="weather-alert-heading"></h3>
 				<p class="lead" id="weather-alert-title"></p>
-				<p id="weather-alert-description"></p>
+				<p class="weather-alert-description"></p>
+			</div>
+			<div class="alert hidden" id="weather-alert-2">
+				<h3 class="weather-alert-heading"></h3>
+				<p class="lead" class="weather-alert-title"></p>
+				<p class="weather-alert-description"></p>
 			</div>
 		</div>
 	</div>
@@ -107,18 +112,34 @@ $(document).ready(function(){
 		dataType: "jsonp",
 		callback: "callback"
 		}).done(function(result){
-			if(result.status == 'Actual'){
-				$("#weather-alert").removeClass('hidden');
-				if(result.type == 'Alert' || result.type == 'Update'){
-					$("#weather-alert").addClass('alert-danger');
-					$("#weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
-				}else if(result.type == 'Cancel'){
-					$("#weather-alert").addClass('alert-info');
-					$("#weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
+			if(result[0].status == 'Actual'){
+				$("#weather-alert-1").removeClass('hidden');
+				if(result[0].type == 'Alert' || result[0].type == 'Update'){
+					$("#weather-alert-1").addClass('alert-danger');
+					$("#weather-alert-1").closest(".weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
+				}else if(result[0].type == 'Cancel'){
+					$("#weather-alert-1").addClass('alert-info');
+					$("#weather-alert-1").closest(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-title").text(result.title);
-				$("#weather-alert-description").text(result.summary);
+				$("#weather-alert-1").closest(".weather-alert-title").text(result[0].title);
+				$("#weather-alert-1").closest(".weather-alert-description").text(result[0].summary);
 			}
+			
+			if(result[1].status == 'Actual'){
+				$("#weather-alert-2").removeClass('hidden');
+				if(result[1].type == 'Alert' || result[1].type == 'Update'){
+					$("#weather-alert-2").addClass('alert-danger');
+					$("#weather-alert-2").closest(".weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
+				}else if(result[1].type == 'Cancel'){
+					$("#weather-alert-2").addClass('alert-info');
+					$("#weather-alert-2").closest(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
+				}
+				$("#weather-alert-2").closest(".weather-alert-title").text(result[0].title);
+				$("#weather-alert-2").closest(".weather-alert-description").text(result[0].summary);
+			}
+			
+			
+			
 	}).fail(function(){
 		
 	});
