@@ -112,6 +112,7 @@ $(document).ready(function(){
 		dataType: "jsonp",
 		callback: "callback"
 		}).done(function(result){
+			$.parseJSON(result);
 			if(result[0].status == 'Actual'){
 				$("#weather-alert-1").removeClass('hidden');
 				if(result[0].type == 'Alert' || result[0].type == 'Update'){
@@ -134,8 +135,8 @@ $(document).ready(function(){
 					$("#weather-alert-2").addClass('alert-info');
 					$("#weather-alert-2").closest(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-2").closest(".weather-alert-title").text(result[0].title);
-				$("#weather-alert-2").closest(".weather-alert-description").text(result[0].summary);
+				$("#weather-alert-2").closest(".weather-alert-title").text(result[1].title);
+				$("#weather-alert-2").closest(".weather-alert-description").text(result[1].summary);
 			}
 			
 			
