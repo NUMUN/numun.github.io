@@ -117,26 +117,26 @@ $(document).ready(function(){
 				$("#weather-alert-1").removeClass('hidden');
 				if(result[0].type == 'Alert' || result[0].type == 'Update'){
 					$("#weather-alert-1").addClass('alert-danger');
-					$("#weather-alert-1").closest(".weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
+					$("#weather-alert-1").children(".weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
 				}else if(result[0].type == 'Cancel'){
 					$("#weather-alert-1").addClass('alert-info');
-					$("#weather-alert-1").closest(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
+					$("#weather-alert-1").children(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-1").closest(".weather-alert-title").text(result[0].title);
-				$("#weather-alert-1").closest(".weather-alert-description").text(result[0].summary);
+				$("#weather-alert-1").children(".weather-alert-title").text(result[0].title);
+				$("#weather-alert-1").children(".weather-alert-description").text(result[0].summary);
 			}
 			
 			if(result[1].status == 'Actual'){
 				$("#weather-alert-2").removeClass('hidden');
 				if(result[1].type == 'Alert' || result[1].type == 'Update'){
 					$("#weather-alert-2").addClass('alert-danger');
-					$("#weather-alert-2").closest(".weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
+					$("#weather-alert-2").children(".weather-alert-heading").html('<i class="fa fa-exclamation-triangle fa-lg"></i>&nbsp;Weather Alert');
 				}else if(result[1].type == 'Cancel'){
 					$("#weather-alert-2").addClass('alert-info');
-					$("#weather-alert-2").closest(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
+					$("#weather-alert-2").children(".weather-alert-heading").html('<i class="fa fa-info-circle fa-lg"></i>&nbsp;Weather Alert Cancelled');
 				}
-				$("#weather-alert-2").closest(".weather-alert-title").text(result[1].title);
-				$("#weather-alert-2").closest(".weather-alert-description").text(result[1].summary);
+				$("#weather-alert-2").children(".weather-alert-title").text(result[1].title);
+				$("#weather-alert-2").children(".weather-alert-description").text(result[1].summary);
 			}
 			
 			
